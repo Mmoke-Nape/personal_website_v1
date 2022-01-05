@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import 'nav_button.dart';
+import 'on_hover.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
@@ -7,7 +11,6 @@ class CustomAppBar extends StatelessWidget {
   }) : super(key: key);
 
   final Size size;
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -36,26 +39,14 @@ class CustomAppBar extends StatelessWidget {
                         color: Theme.of(context).primaryColor,
                       ),
                 ),
-                Text(
-                  'Work',
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyText2!
-                      .copyWith(fontSize: 20),
+                GestureDetector(
+                  onTap: () => Get.toNamed('/about'),
+                  child: NavButton(
+                    text: 'About',
+                  ),
                 ),
-                Text(
-                  'About',
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyText2!
-                      .copyWith(fontSize: 20),
-                ),
-                Text(
-                  'Contact',
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyText2!
-                      .copyWith(fontSize: 20),
+                NavButton(
+                  text: 'Contact',
                 ),
               ],
             ),

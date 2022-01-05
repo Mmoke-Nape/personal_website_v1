@@ -46,7 +46,7 @@ class HomePortfolioPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 Text(
-                  'All Creative Works,\nSelected Projects',
+                  'All Creative Works,\nSelected Projects.',
                   style: Theme.of(context)
                       .textTheme
                       .headline3!
@@ -64,8 +64,9 @@ class HomePortfolioPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 40),
-                const UnderlinedTextArrow(
-                  text: "Explore More",
+                UnderlinedTextArrow(
+                  text: "More to come...",
+                  color: Theme.of(context).primaryColor,
                 ),
               ],
             ),

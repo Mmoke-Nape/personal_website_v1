@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:personal_website/widgets/underlined_text_arrow.dart';
 
 class HomePageOneTextColumn extends StatelessWidget {
@@ -13,9 +14,9 @@ class HomePageOneTextColumn extends StatelessWidget {
   Widget build(BuildContext context) {
     return Positioned(
       top: 260,
-      right: 0,
+      right: -size.width * .02,
       child: Container(
-        width: size.width * .22,
+        width: size.width * .24,
         // color: Colors.black,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,7 +42,7 @@ class HomePageOneTextColumn extends StatelessWidget {
             ),
             const SizedBox(height: 30),
             Text(
-              "Based in Johannesburg, I'm a web and mobile developer.",
+              "Based in Johannesburg, South Africa. I'm a web and mobile developer.",
               style: Theme.of(context)
                   .textTheme
                   .headline4!
@@ -56,8 +57,12 @@ class HomePageOneTextColumn extends StatelessWidget {
                   .copyWith(color: Colors.grey, letterSpacing: 3),
             ),
             const SizedBox(height: 30),
-            const UnderlinedTextArrow(
-              text: "My story",
+            GestureDetector(
+              onTap: () => Get.toNamed('/about'),
+              child: UnderlinedTextArrow(
+                text: "My story",
+                color: Theme.of(context).primaryColor,
+              ),
             ),
           ],
         ),

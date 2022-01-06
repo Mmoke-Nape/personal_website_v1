@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class ConsultButton extends StatefulWidget {
-  ConsultButton({
+  const ConsultButton({
     Key? key,
+    required this.text,
+    required this.color,
+    required this.icon,
   }) : super(key: key);
-
+  final String text;
+  final Color color;
+  final String icon;
   @override
   State<ConsultButton> createState() => _ConsultButtonState();
 }
 
 class _ConsultButtonState extends State<ConsultButton> {
   var isHovering = false;
-
-  var downloadColor = Colors.teal;
 
   @override
   Widget build(BuildContext context) {
@@ -26,19 +30,24 @@ class _ConsultButtonState extends State<ConsultButton> {
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 250),
         padding: const EdgeInsets.symmetric(
-          horizontal: 20,
-          vertical: 10,
+          horizontal: 25,
+          // vertical: 5,
         ),
         decoration: BoxDecoration(
-          color: isHovering ? Colors.teal : Colors.purple,
+          color: isHovering ? widget.color : Colors.purple,
           borderRadius: BorderRadius.circular(20),
         ),
         height: 50,
         child: Row(
-          children: const [
-            Icon(Icons.clean_hands_rounded, size: 30),
-            SizedBox(width: 10),
-            Text('Consult Me!')
+          children: [
+            SvgPicture.asset(
+              widget.icon,
+              height: 25,
+              fit: BoxFit.fitHeight,
+              color: Colors.white,
+            ),
+            const SizedBox(width: 10),
+            Text(widget.text),
           ],
         ),
       ),

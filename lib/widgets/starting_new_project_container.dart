@@ -61,7 +61,10 @@ class StartingProjectContainer extends StatelessWidget {
             ],
           ),
           const SizedBox(width: 70),
-          ConsultButton(),
+          const ConsultButton(
+              text: 'Consult me!',
+              color: Colors.teal,
+              icon: 'assets/icons/email.svg'),
         ],
       ),
     );

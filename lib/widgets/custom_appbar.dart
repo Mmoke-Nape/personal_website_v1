@@ -32,21 +32,24 @@ class CustomAppBar extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text(
-                  'Home',
-                  style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                        fontSize: 20,
-                        color: Theme.of(context).primaryColor,
-                      ),
+                GestureDetector(
+                  onTap: () => Get.toNamed('/', arguments: {'page': 'home'}),
+                  child: NavButton(
+                    text: 'Home',
+                  ),
                 ),
                 GestureDetector(
-                  onTap: () => Get.toNamed('/about'),
+                  onTap: () =>
+                      Get.toNamed('/about', arguments: {'page': 'about'}),
                   child: NavButton(
                     text: 'About',
                   ),
                 ),
-                NavButton(
-                  text: 'Contact',
+                GestureDetector(
+                  onTap: () {},
+                  child: NavButton(
+                    text: 'Contact',
+                  ),
                 ),
               ],
             ),

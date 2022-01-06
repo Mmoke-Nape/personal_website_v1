@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ListOfSocials extends StatelessWidget {
   const ListOfSocials({
@@ -8,7 +9,11 @@ class ListOfSocials extends StatelessWidget {
   }) : super(key: key);
 
   final Size size;
-
+  static const String linkedin =
+      'https://www.linkedin.com/in/mmoke-nape-a573a3202/';
+  static const String git = 'https://github.com/Mmoke-Nape';
+  static const String instagram = 'https://www.instagram.com/mmoke_nape/';
+  static const String facebook = 'https://www.facebook.com/mmoke.nape.92';
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,28 +22,28 @@ class ListOfSocials extends StatelessWidget {
       child: Row(
         children: [
           IconButton(
-            onPressed: () {},
+            onPressed: () => _launchUrl(linkedin),
             icon: SvgPicture.asset(
               '/icons/linkedin_outline.svg',
               color: Theme.of(context).primaryColor,
             ),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () => _launchUrl(git),
             icon: SvgPicture.asset(
               '/icons/github_cat.svg',
               color: Theme.of(context).primaryColor,
             ),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () => _launchUrl(instagram),
             icon: SvgPicture.asset(
               '/icons/instagram.svg',
               color: Theme.of(context).primaryColor,
             ),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () => _launchUrl(facebook),
             icon: SvgPicture.asset(
               '/icons/facebook.svg',
               color: Theme.of(context).primaryColor,
@@ -48,4 +53,13 @@ class ListOfSocials extends StatelessWidget {
       ),
     );
   }
+}
+
+void _launchUrl(String url) async {
+  if (!await launch(
+    url,
+    forceSafariVC: false,
+    forceWebView: true,
+    enableJavaScript: true,
+  )) throw 'Could not launch URL';
 }

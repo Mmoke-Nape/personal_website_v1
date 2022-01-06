@@ -35,7 +35,9 @@ class HomeScreen extends StatelessWidget {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              CustomAppBar(size: size),
+              CustomAppBar(
+                size: size,
+              ),
               // const SizedBox(height: 30),
               Container(
                 height: size.height - 100,

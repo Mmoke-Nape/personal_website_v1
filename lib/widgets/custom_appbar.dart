@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'nav_button.dart';
 import 'on_hover.dart';
@@ -11,6 +12,7 @@ class CustomAppBar extends StatelessWidget {
   }) : super(key: key);
 
   final Size size;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -34,20 +36,23 @@ class CustomAppBar extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () => Get.toNamed('/', arguments: {'page': 'home'}),
-                  child: NavButton(
+                  child: const NavButton(
+                    page: 'home',
                     text: 'Home',
                   ),
                 ),
                 GestureDetector(
                   onTap: () =>
                       Get.toNamed('/about', arguments: {'page': 'about'}),
-                  child: NavButton(
+                  child: const NavButton(
+                    page: 'about',
                     text: 'About',
                   ),
                 ),
                 GestureDetector(
                   onTap: () {},
-                  child: NavButton(
+                  child: const NavButton(
+                    page: 'contact',
                     text: 'Contact',
                   ),
                 ),
@@ -59,3 +64,8 @@ class CustomAppBar extends StatelessWidget {
     );
   }
 }
+
+
+// void _openEmail() async {
+//   if (!await launch(_url)) throw 'Could not launch $_url';
+// }

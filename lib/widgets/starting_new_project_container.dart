@@ -22,7 +22,7 @@ class StartingProjectContainer extends StatelessWidget {
       width: size.width * .5,
       height: 100,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Colors.white70,
         borderRadius: BorderRadius.circular(20),
       ),
       child: Row(
@@ -56,13 +56,13 @@ class StartingProjectContainer extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .bodyText2!
-                    .copyWith(color: Colors.grey, letterSpacing: 3),
+                    .copyWith(color: Colors.grey[200], letterSpacing: 3),
               ),
             ],
           ),
           const SizedBox(width: 70),
           const ConsultButton(
-              text: 'Consult me!',
+              text: 'Hire me!',
               color: Colors.teal,
               icon: 'assets/icons/email.svg'),
         ],

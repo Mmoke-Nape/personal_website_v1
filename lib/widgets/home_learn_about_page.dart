@@ -171,7 +171,7 @@ class HomeLearnAboutPage extends StatelessWidget {
                         ),
                         TextSpan(
                             text:
-                                "I'm currently available for any internships, startup projects and freelance work."),
+                                ". I'm currently available for any internships, startup projects and freelance work."),
                       ],
                     ),
                   ),

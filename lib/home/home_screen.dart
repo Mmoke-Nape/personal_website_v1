@@ -14,7 +14,7 @@ import 'package:personal_website/widgets/consult_button.dart';
 import 'package:personal_website/widgets/contact_full_triangle_clipper.dart';
 import 'package:personal_website/widgets/custom_appbar.dart';
 import 'package:personal_website/widgets/footer.dart';
-import 'package:personal_website/widgets/home_learn_about_page.dart';
+import 'package:personal_website/home/components/home_learn_about_page.dart';
 import 'package:personal_website/widgets/list_of_socials.dart';
 import 'package:personal_website/widgets/project_display.dart';
 import 'package:personal_website/widgets/starting_new_project_container.dart';
@@ -36,6 +36,7 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             children: [
               CustomAppBar(
+                isShopApp: false,
                 size: size,
               ),
               // const SizedBox(height: 30),
@@ -104,48 +105,6 @@ class HomeScreen extends StatelessWidget {
               HomeLearnAboutPage(size: size),
             ],
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class SendMeAnEmailButton extends StatefulWidget {
-  const SendMeAnEmailButton({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  State<SendMeAnEmailButton> createState() => _SendMeAnEmailButtonState();
-}
-
-class _SendMeAnEmailButtonState extends State<SendMeAnEmailButton> {
-  var isHovering = true;
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {},
-      onHover: (value) {
-        setState(() {
-          isHovering = !isHovering;
-        });
-      },
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 250),
-        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.black),
-          color: isHovering ? null : Colors.white,
-        ),
-        child: Row(
-          children: const [
-            Text("Send me an email", style: TextStyle(color: Colors.black)),
-            SizedBox(width: 10),
-            Icon(
-              Icons.mail_outline,
-              color: Colors.black,
-            )
-          ],
         ),
       ),
     );

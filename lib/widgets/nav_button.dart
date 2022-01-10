@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../constants.dart';
 import 'on_hover.dart';
 
 class NavButton extends StatefulWidget {
@@ -8,10 +9,12 @@ class NavButton extends StatefulWidget {
     Key? key,
     required this.text,
     required this.page,
+    required this.isShopApp,
   }) : super(key: key);
 
   final String text;
   final String page;
+  final bool isShopApp;
   @override
   State<NavButton> createState() => _NavButtonState();
 }
@@ -19,13 +22,15 @@ class NavButton extends StatefulWidget {
 class _NavButtonState extends State<NavButton> {
   @override
   Widget build(BuildContext context) {
+    final color =
+        widget.isShopApp ? shopAppColor : Theme.of(context).primaryColor;
     if (Get.currentRoute == '/' && widget.text == 'Home') {
       return Text(
         widget.text,
         style: Theme.of(context)
             .textTheme
             .bodyText2!
-            .copyWith(fontSize: 20, color: Theme.of(context).primaryColor),
+            .copyWith(fontSize: 20, color: color),
       );
     }
     if (Get.currentRoute == '/about' && widget.text == 'About') {
@@ -34,7 +39,7 @@ class _NavButtonState extends State<NavButton> {
         style: Theme.of(context)
             .textTheme
             .bodyText2!
-            .copyWith(fontSize: 20, color: Theme.of(context).primaryColor),
+            .copyWith(fontSize: 20, color: color),
       );
     }
     return OnHover(
@@ -42,9 +47,10 @@ class _NavButtonState extends State<NavButton> {
       builder: (isHovered) {
         return Text(
           widget.text,
-          style: Theme.of(context).textTheme.bodyText2!.copyWith(
-              fontSize: 20,
-              color: isHovered ? Theme.of(context).primaryColor : Colors.white),
+          style: Theme.of(context)
+              .textTheme
+              .bodyText2!
+              .copyWith(fontSize: 20, color: isHovered ? color : Colors.white),
         );
       },
     );

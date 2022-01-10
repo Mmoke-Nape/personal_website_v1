@@ -4,12 +4,15 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:personal_website/home/components/home_about_clipper.dart';
 import 'package:personal_website/home/home_screen.dart';
+import 'package:personal_website/widgets/send_email_button.dart';
+import 'package:personal_website/widgets/shoe_onhover.dart';
 import 'package:personal_website/widgets/starting_new_project_container.dart';
 import 'package:personal_website/widgets/underlined_text_arrow.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-import '../constants.dart';
-import 'contact_full_triangle_clipper.dart';
-import 'footer.dart';
+import '../../constants.dart';
+import '../../widgets/contact_full_triangle_clipper.dart';
+import '../../widgets/footer.dart';
 
 class HomeLearnAboutPage extends StatelessWidget {
   const HomeLearnAboutPage({
@@ -51,9 +54,9 @@ class HomeLearnAboutPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  'Learn a little bit \nabout my skills\nand',
+                  'Learn a little \nbit about my\nskills and',
                   textAlign: TextAlign.right,
-                  style: Theme.of(context).textTheme.headline2!.copyWith(
+                  style: Theme.of(context).textTheme.headline4!.copyWith(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                       ),
@@ -63,8 +66,8 @@ class HomeLearnAboutPage extends StatelessWidget {
                   child: const UnderlinedTextArrow(
                     text: 'Me',
                     color: Colors.teal,
-                    textSize: 47,
-                    iconSize: 45,
+                    textSize: 30,
+                    iconSize: 27,
                   ),
                 )
               ],
@@ -76,46 +79,71 @@ class HomeLearnAboutPage extends StatelessWidget {
             child: StartingProjectContainer(size: size),
           ),
           Positioned(
-            left: 160,
-            top: 200,
-            child: Container(
-              width: size.width * .6,
-              height: size.height - 200,
-              // color: Colors.amber,
-              child: Stack(
-                alignment: Alignment.center,
-                clipBehavior: Clip.none,
-                children: [
-                  Positioned(
-                    top: -30,
-                    left: size.width * .1,
+            bottom: size.height * .7,
+            left: size.width * .2,
+            child: Image.asset(
+              'assets/images/step2.png',
+              height: size.height * .9,
+            ),
+          ),
+          Positioned(
+            bottom: size.height * .7,
+            left: size.width * .05,
+            child: Image.asset(
+              'assets/images/rs6.png',
+              width: size.width * .4,
+            ),
+          ),
+          Positioned(
+            top: size.height * .4,
+            left: size.width * .3,
+            child: GestureDetector(
+              onTap: () =>
+                  _launchUrl('https://www.instagram.com/dripout_customs/'),
+              child: ShoeOnHover(
+                builder: (isHovering) {
+                  return Transform.rotate(
+                    angle: -math.pi / 12,
                     child: Image.asset(
-                      '/images/laptop.png',
-                      height: 250,
+                      'assets/images/Shoe.png',
+                      width: size.width * .4,
                     ),
-                  ),
-                  Positioned(
-                    right: size.width * .06,
-                    bottom: 0,
-                    child: Transform.rotate(
-                      angle: -math.pi / -12,
-                      child: Image.asset(
-                          '/images/White_King_Chess_clip_art_medium-new.png',
-                          height: 500,
-                          fit: BoxFit.fitHeight),
-                    ),
-                  ),
-                  Positioned(
-                    left: 0,
-                    child: SvgPicture.asset(
-                      '/icons/basketball.svg',
-                      height: 400,
-                      color: Colors.orange[900],
-                    ),
-                  ),
-                  Image.asset('/images/line-suit-white.png'),
-                ],
+                  );
+                },
               ),
+            ),
+          ),
+          Positioned(
+            top: size.height * .3,
+            left: size.width * .1,
+            child: SvgPicture.asset(
+              'assets/icons/firebase.svg',
+              color: Colors.amber,
+              height: 150,
+            ),
+          ),
+          Positioned(
+            top: size.height * .8,
+            left: size.width * .5,
+            child: SvgPicture.asset(
+              'assets/icons/mysql.svg',
+              width: 100,
+            ),
+          ),
+          Positioned(
+            top: size.height * .2,
+            left: size.width * .5,
+            child: SvgPicture.asset(
+              'assets/icons/python.svg',
+              height: 150,
+            ),
+          ),
+          Positioned(
+            top: size.height * .75,
+            left: size.width * .6,
+            child: SvgPicture.asset(
+              'assets/icons/flutter-color.svg',
+              height: 200,
             ),
           ),
           Positioned(
@@ -209,7 +237,7 @@ class HomeLearnAboutPage extends StatelessWidget {
                 children: [
                   Positioned(
                     bottom: 0,
-                    child: Image.asset('/images/me/bottom.png',
+                    child: Image.asset('/images/me/half_turn.png',
                         height: size.height * .5, fit: BoxFit.fitHeight),
                   ),
                 ],
@@ -224,4 +252,13 @@ class HomeLearnAboutPage extends StatelessWidget {
       ),
     );
   }
+}
+
+void _launchUrl(String url) async {
+  if (!await launch(
+    url,
+    forceSafariVC: false,
+    forceWebView: true,
+    enableJavaScript: true,
+  )) throw 'Could not launch URL';
 }

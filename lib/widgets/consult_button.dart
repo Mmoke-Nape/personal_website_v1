@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ConsultButton extends StatefulWidget {
   const ConsultButton({
@@ -17,11 +18,23 @@ class ConsultButton extends StatefulWidget {
 
 class _ConsultButtonState extends State<ConsultButton> {
   var isHovering = false;
+  void _launchUrl(String url) async {
+    if (!await launch(
+      url,
+      forceSafariVC: false,
+      forceWebView: true,
+      enableJavaScript: true,
+    )) throw 'Could not launch URL';
+  }
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        if (widget.text == 'Hire me!') {
+          _launchUrl('mailto:napemmoke@gmail.com?');
+        }
+      },
       onHover: (value) {
         setState(() {
           isHovering = !isHovering;

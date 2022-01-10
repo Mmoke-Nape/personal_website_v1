@@ -9,6 +9,7 @@ import 'package:personal_website/widgets/custom_appbar.dart';
 import 'package:personal_website/widgets/list_of_socials.dart';
 import 'package:personal_website/widgets/on_hover.dart';
 import 'package:personal_website/widgets/starting_new_project_container.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AboutPage extends StatelessWidget {
   const AboutPage({Key? key}) : super(key: key);
@@ -121,16 +122,16 @@ class AboutPage extends StatelessWidget {
                                       children: [
                                         ListOfSocials(size: size),
                                         const SizedBox(width: 20),
-                                        const Text(
-                                          'Download my',
-                                          style: TextStyle(color: Colors.grey),
-                                        ),
-                                        const SizedBox(width: 20),
-                                        const ConsultButton(
-                                          text: 'resume',
-                                          color: Colors.teal,
-                                          icon: 'assets/icons/download.svg',
-                                        ),
+                                        // const Text(
+                                        //   'Download my',
+                                        //   style: TextStyle(color: Colors.grey),
+                                        // ),
+                                        // const SizedBox(width: 20),
+                                        // const ConsultButton(
+                                        //   text: 'resume',
+                                        //   color: Colors.teal,
+                                        //   icon: 'assets/icons/download.svg',
+                                        // ),
                                       ],
                                     ),
                                     const SizedBox(height: 30),
@@ -380,27 +381,33 @@ class AboutPage extends StatelessWidget {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        const Text(
-                                          'My Business ',
-                                          style: style,
-                                        ),
-                                        GestureDetector(
-                                          onTap: () {},
-                                          child: OnHover(
-                                            isNav: false,
-                                            builder: (hover) {
-                                              return Text(
-                                                '@dripout_customs',
-                                                style: style.copyWith(
-                                                  fontWeight: FontWeight.bold,
-                                                  color: hover
-                                                      ? Theme.of(context)
-                                                          .primaryColor
-                                                      : Colors.white70,
-                                                ),
-                                              );
-                                            },
-                                          ),
+                                        Column(
+                                          children: [
+                                            const Text(
+                                              'My AF1 customizing business ',
+                                              style: style,
+                                            ),
+                                            GestureDetector(
+                                              onTap: () => _launchUrl(
+                                                  'https://www.instagram.com/dripout_customs/'),
+                                              child: OnHover(
+                                                isNav: false,
+                                                builder: (hover) {
+                                                  return Text(
+                                                    '@dripout_customs',
+                                                    style: style.copyWith(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: hover
+                                                          ? Theme.of(context)
+                                                              .primaryColor
+                                                          : Colors.white70,
+                                                    ),
+                                                  );
+                                                },
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                         const SizedBox(width: 60),
                                         const Text(
@@ -432,7 +439,10 @@ class AboutPage extends StatelessWidget {
                   ),
                   Positioned(
                     top: 0,
-                    child: CustomAppBar(size: size),
+                    child: CustomAppBar(
+                      size: size,
+                      isShopApp: false,
+                    ),
                   ),
                 ],
               ),
@@ -442,4 +452,13 @@ class AboutPage extends StatelessWidget {
       ),
     );
   }
+}
+
+void _launchUrl(String url) async {
+  if (!await launch(
+    url,
+    forceSafariVC: false,
+    forceWebView: true,
+    enableJavaScript: true,
+  )) throw 'Could not launch URL';
 }

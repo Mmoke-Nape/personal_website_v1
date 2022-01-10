@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:personal_website/constants.dart';
+import 'package:personal_website/widgets/on_hover.dart';
 import 'package:personal_website/widgets/project_display.dart';
 import 'package:personal_website/widgets/underlined_text_arrow.dart';
 
@@ -14,7 +16,7 @@ class HomePortfolioPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: size.height * 1.5,
+      height: size.height,
       // width: size.width,
       color: black,
       child: Stack(
@@ -72,10 +74,11 @@ class HomePortfolioPage extends StatelessWidget {
             ),
           ),
           ProjectDisplay(
-              size: size, top: size.height * .12, right: size.width * .2),
-          ProjectDisplay(size: size, top: 450, left: 150),
-          ProjectDisplay(
-              size: size, bottom: size.height * .1, right: size.width * .3),
+            image: 'assets/images/MockUps/Mockup.png',
+            size: size,
+            top: size.height * .15,
+            right: size.width * .1,
+          ),
         ],
       ),
     );

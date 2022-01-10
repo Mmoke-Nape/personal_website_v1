@@ -47,8 +47,11 @@ class _UnderlinedTextArrowState extends State<UnderlinedTextArrow> {
                   ),
                 ),
                 const SizedBox(width: 5),
-                Icon(Icons.arrow_forward,
-                    color: widget.color, size: widget.iconSize),
+                Icon(
+                  Icons.arrow_forward,
+                  color: widget.color,
+                  size: widget.iconSize,
+                ),
               ],
             ),
           );

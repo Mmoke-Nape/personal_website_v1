@@ -10,7 +10,7 @@ class ListOfSocials extends StatelessWidget {
 
   final Size size;
   static const String linkedin =
-      'https://www.linkedin.com/in/mmoke-nape-a573a3202/';
+      'https://www.linkedin.com/in/mmoke-nape-a573a3202';
   static const String git = 'https://github.com/Mmoke-Nape';
   static const String instagram = 'https://www.instagram.com/mmoke_nape/';
   static const String facebook = 'https://www.facebook.com/mmoke.nape.92';

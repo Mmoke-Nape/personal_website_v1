@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:personal_website/constants.dart';
+import 'package:personal_website/responsive/responsive.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'nav_button.dart';
@@ -20,51 +22,59 @@ class CustomAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       // color: Colors.green,
-      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-      height: 100,
+      padding: EdgeInsets.symmetric(
+          horizontal: Responsive.isMobile(context) ? 20 : 30,
+          vertical: Responsive.isMobile(context) ? 10 : 20),
+      height: Responsive.isMobile(context) ? 70 : 100,
       width: size.width,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Icon(
-            Icons.flutter_dash,
-            size: 60,
+          SvgPicture.asset(
+            'assets/icons/personal Logo.svg',
+            height: Responsive.isMobile(context) ? 50 : 60,
             color: isShopApp ? shopAppColor : Theme.of(context).primaryColor,
           ),
-          Container(
-            // color: Colors.amber,
-            width: size.width * .4,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                GestureDetector(
-                  onTap: () => Get.toNamed('/', arguments: {'page': 'home'}),
-                  child: NavButton(
-                    isShopApp: isShopApp,
-                    page: 'home',
-                    text: 'Home',
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () =>
-                      Get.toNamed('/about', arguments: {'page': 'about'}),
-                  child: NavButton(
-                    isShopApp: isShopApp,
-                    page: 'about',
-                    text: 'About',
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () => _openEmail('mailto:napemmoke@gmail.com?'),
-                  child: NavButton(
-                    isShopApp: isShopApp,
-                    page: 'contact',
-                    text: 'Contact',
-                  ),
-                ),
-              ],
-            ),
+          SvgPicture.asset(
+            '/icons/menu.svg',
+            height: Responsive.isMobile(context) ? 40 : 60,
+            color: isShopApp ? shopAppColor : Theme.of(context).primaryColor,
           ),
+          if (!Responsive.isMobile(context))
+            Container(
+              // color: Colors.amber,
+              width: size.width * .4,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  GestureDetector(
+                    onTap: () => Get.toNamed('/', arguments: {'page': 'home'}),
+                    child: NavButton(
+                      isShopApp: isShopApp,
+                      page: 'home',
+                      text: 'Home',
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () =>
+                        Get.toNamed('/about', arguments: {'page': 'about'}),
+                    child: NavButton(
+                      isShopApp: isShopApp,
+                      page: 'about',
+                      text: 'About',
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () => _openEmail('mailto:napemmoke@gmail.com?'),
+                    child: NavButton(
+                      isShopApp: isShopApp,
+                      page: 'contact',
+                      text: 'Contact',
+                    ),
+                  ),
+                ],
+              ),
+            ),
         ],
       ),
     );

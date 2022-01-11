@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:personal_website/responsive/responsive.dart';
 import 'package:personal_website/widgets/underlined_text_arrow.dart';
 
 class HomePageOneTextColumn extends StatelessWidget {
@@ -12,51 +13,66 @@ class HomePageOneTextColumn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      top: 260,
-      right: -size.width * .02,
-      child: Container(
-        width: size.width * .24,
-        // color: Colors.black,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Text(
-                  "Software Engineer Undergrad    \t",
-                  style: TextStyle(
-                    color: Theme.of(context).primaryColor,
-                    decoration: TextDecoration.underline,
-                    decorationThickness: 1.3,
-                  ),
+    return Container(
+      width: Responsive.isMobile(context) ? size.width * .56 : size.width * .24,
+      // color: Colors.black,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Text(
+                Responsive.isMobile(context)
+                    ? "Software Engineer Undergrad  "
+                    : "Software Engineer Undergrad    \t",
+                maxLines: 2,
+                softWrap: true,
+                // overflow: TextOverflow.visible,
+                style: TextStyle(
+                  color: Theme.of(context).primaryColor,
+                  decoration: TextDecoration.underline,
+                  decorationThickness: 1.3,
+                  fontSize: Responsive.isMobile(context) ? 13.5 : null,
                 ),
-                SizedBox(
-                  width: 50,
-                  child: Divider(
-                    color: Theme.of(context).primaryColor,
-                    thickness: 1,
-                  ),
+              ),
+              SizedBox(
+                width: Responsive.isMobile(context) ? 20 : 50,
+                child: Divider(
+                  color: Theme.of(context).primaryColor,
+                  thickness: 1,
                 ),
-              ],
+              ),
+            ],
+          ),
+          const SizedBox(height: 30),
+          Text(
+            "Based in Johannesburg, South Africa. I'm a web and mobile developer.",
+            style: Theme.of(context).textTheme.headline4!.copyWith(
+                  color: Colors.white,
+                  fontSize: Responsive.isMobile(context) ? 20 : null,
+                ),
+          ),
+          const SizedBox(height: 30),
+          Text(
+            "An enthusiastic software engineer undergrad ready to imact the world of tech by delivering high quality products while doing everything else I love",
+            style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                color: Responsive.isMobile(context)
+                    ? Colors.white.withOpacity(.8)
+                    : Colors.grey,
+                letterSpacing: 3),
+          ),
+          const SizedBox(height: 30),
+          if (Responsive.isMobile(context))
+            Center(
+              child: GestureDetector(
+                onTap: () => Get.toNamed('/about'),
+                child: UnderlinedTextArrow(
+                  text: "My story",
+                  color: Theme.of(context).primaryColor,
+                ),
+              ),
             ),
-            const SizedBox(height: 30),
-            Text(
-              "Based in Johannesburg, South Africa. I'm a web and mobile developer.",
-              style: Theme.of(context)
-                  .textTheme
-                  .headline4!
-                  .copyWith(color: Colors.white),
-            ),
-            const SizedBox(height: 30),
-            Text(
-              "An enthusiastic software engineer undergrad ready to imact the world of tech by delivering high quality products while doing everything else I love",
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyText2!
-                  .copyWith(color: Colors.grey, letterSpacing: 3),
-            ),
-            const SizedBox(height: 30),
+          if (!Responsive.isMobile(context))
             GestureDetector(
               onTap: () => Get.toNamed('/about'),
               child: UnderlinedTextArrow(
@@ -64,8 +80,7 @@ class HomePageOneTextColumn extends StatelessWidget {
                 color: Theme.of(context).primaryColor,
               ),
             ),
-          ],
-        ),
+        ],
       ),
     );
   }

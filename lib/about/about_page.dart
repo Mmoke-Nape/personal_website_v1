@@ -46,7 +46,7 @@ class AboutPage extends StatelessWidget {
                         },
                         blendMode: BlendMode.dstIn,
                         child: Image.asset(
-                          '/images/me/me_suit.png',
+                          'assets/images/me/me_suit.png',
                           width: size.width * .4,
                           height: size.height,
                           fit: BoxFit.fitHeight,

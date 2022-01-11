@@ -109,7 +109,7 @@ class ShopAppPage extends StatelessWidget {
                           Positioned(
                             right: 0,
                             child: Container(
-                              color: Colors.red,
+                              // color: Colors.red,
                               width: size.width * .75,
                               height: size.height - 100,
                               child: SingleChildScrollView(

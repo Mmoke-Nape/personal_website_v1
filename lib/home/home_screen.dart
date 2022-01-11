@@ -10,6 +10,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:personal_website/constants.dart';
 import 'package:personal_website/home/components/home_about_clipper.dart';
+import 'package:personal_website/responsive/responsive.dart';
 import 'package:personal_website/widgets/consult_button.dart';
 import 'package:personal_website/widgets/contact_full_triangle_clipper.dart';
 import 'package:personal_website/widgets/custom_appbar.dart';
@@ -41,60 +42,82 @@ class HomeScreen extends StatelessWidget {
               ),
               // const SizedBox(height: 30),
               Container(
-                height: size.height - 100,
-                width: size.width * .8,
+                height: Responsive.isMobile(context)
+                    ? size.height - 70
+                    : size.height - 100,
+                width:
+                    Responsive.isMobile(context) ? size.width : size.width * .8,
                 // color: Colors.blue,
                 child: Stack(
                   clipBehavior: Clip.none,
                   children: [
                     Positioned(
                       top: size.height * .1,
+                      right: Responsive.isMobile(context)
+                          ? size.width * .15
+                          : null,
                       child: Text(
-                        'Mmoke\n  Nape',
+                        Responsive.isMobile(context)
+                            ? 'Mmoke\n     Nape'
+                            : 'Mmoke\n  Nape',
                         style: Theme.of(context).textTheme.headline1!.copyWith(
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
-                            fontSize: 155,
+                            fontSize: Responsive.isMobile(context) ? 40 : 155,
                             letterSpacing: .1),
                       ),
                     ),
                     Positioned(
                       bottom: 0,
-                      right: size.width * .23,
+                      right: Responsive.isMobile(context)
+                          ? null
+                          : size.width * .23,
+                      left: Responsive.isMobile(context)
+                          ? -size.width * .55
+                          : null,
                       child: Container(
                         height: size.height * .93,
                         child: Image.asset(
-                          '/images/me/me_again.png',
+                          'assets/images/me/me_again.png',
                           fit: BoxFit.fitHeight,
                         ),
                       ),
                     ),
-                    const Positioned(
-                      top: 110,
-                      right: 57,
-                      child: CircleAvatar(
-                        radius: 35,
-                        backgroundColor: Colors.teal,
+                    if (!Responsive.isMobile(context))
+                      const Positioned(
+                        top: 110,
+                        right: 57,
+                        child: CircleAvatar(
+                          radius: 35,
+                          backgroundColor: Colors.teal,
+                        ),
                       ),
-                    ),
-                    Positioned(
-                      top: 70,
-                      right: 60,
-                      child: Transform.rotate(
-                        angle: -10,
-                        child: ClipPath(
-                          clipper: TriangleClipper(),
-                          child: Container(
-                            height: 80,
-                            width: 140,
-                            color: const Color(0xff4f4346),
+                    if (!Responsive.isMobile(context))
+                      Positioned(
+                        top: 70,
+                        right: 60,
+                        child: Transform.rotate(
+                          angle: -10,
+                          child: ClipPath(
+                            clipper: TriangleClipper(),
+                            child: Container(
+                              height: 80,
+                              width: 140,
+                              color: const Color(0xff4f4346),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    HomePageOneTextColumn(size: size),
                     Positioned(
-                      bottom: 100,
+                        top: Responsive.isMobile(context)
+                            ? size.height * .3
+                            : 260,
+                        right: Responsive.isMobile(context)
+                            ? size.width * .1
+                            : -size.width * .02,
+                        child: HomePageOneTextColumn(size: size)),
+                    Positioned(
+                      bottom: Responsive.isMobile(context) ? 10 : 100,
                       left: 0,
                       child: ListOfSocials(size: size),
                     ),

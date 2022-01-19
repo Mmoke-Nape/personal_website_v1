@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:personal_website/about/about_page.dart';
 import 'package:personal_website/screens/projects/shop%20app/shop_app_screen.dart';
+import 'package:personal_website/widgets/home_learn_about_me_page_mobile.dart';
+import 'package:url_strategy/url_strategy.dart';
 
 import 'constants.dart';
 import 'home/components/home_learn_about_page.dart';
+import 'home/components/home_portfolio_page.dart';
 import 'home/home_screen.dart';
 
 void main() {
+  setPathUrlStrategy();
   runApp(const MyApp());
 }
 
@@ -21,15 +25,6 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-            // This is the theme of your application.
-            //
-            // Try running your application with "flutter run". You'll see the
-            // application has a blue toolbar. Then, without quitting the app, try
-            // changing the primarySwatch below to Colors.green and then invoke
-            // "hot reload" (press "r" in the console where you ran "flutter run",
-            // or simply save your changes to "hot reload" in a Flutter IDE).
-            // Notice that the counter didn't reset back to zero; the application
-            // is not restarted.
             scaffoldBackgroundColor: Colors.black87,
             brightness: Brightness.dark,
             primaryColor: Color(0xff9f00ff)
@@ -37,8 +32,10 @@ class MyApp extends StatelessWidget {
             // Colors.purple[500],
             ),
         home:
+            //  HomePortfolioPage(),
             // ShopAppPage(),
             HomeScreen(),
+        // HomeLearnAboutMePageMobile(),
         // HomeLearnAboutPage(),
         getPages: [
           GetPage(

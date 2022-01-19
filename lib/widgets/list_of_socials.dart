@@ -5,10 +5,8 @@ import 'package:url_launcher/url_launcher.dart';
 class ListOfSocials extends StatelessWidget {
   const ListOfSocials({
     Key? key,
-    required this.size,
   }) : super(key: key);
 
-  final Size size;
   static const String linkedin =
       'https://www.linkedin.com/in/mmoke-nape-a573a3202';
   static const String git = 'https://github.com/Mmoke-Nape';
@@ -24,28 +22,28 @@ class ListOfSocials extends StatelessWidget {
           IconButton(
             onPressed: () => _launchUrl(linkedin),
             icon: SvgPicture.asset(
-              '/icons/linkedin_outline.svg',
+              'assets/icons/linkedin_outline.svg',
               color: Theme.of(context).primaryColor,
             ),
           ),
           IconButton(
             onPressed: () => _launchUrl(git),
             icon: SvgPicture.asset(
-              '/icons/github_cat.svg',
+              'assets/icons/github_cat.svg',
               color: Theme.of(context).primaryColor,
             ),
           ),
           IconButton(
             onPressed: () => _launchUrl(instagram),
             icon: SvgPicture.asset(
-              '/icons/instagram.svg',
+              'assets/icons/instagram.svg',
               color: Theme.of(context).primaryColor,
             ),
           ),
           IconButton(
             onPressed: () => _launchUrl(facebook),
             icon: SvgPicture.asset(
-              '/icons/facebook.svg',
+              'assets/icons/facebook.svg',
               color: Theme.of(context).primaryColor,
             ),
           ),

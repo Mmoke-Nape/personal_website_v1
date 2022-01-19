@@ -244,9 +244,9 @@ class HomeLearnAboutPage extends StatelessWidget {
               ),
             ),
           ),
-          Positioned(
+          const Positioned(
             bottom: 0,
-            child: Footer(size: size),
+            child: Footer(),
           ),
         ],
       ),

@@ -18,22 +18,15 @@ class ConsultButton extends StatefulWidget {
 
 class _ConsultButtonState extends State<ConsultButton> {
   var isHovering = false;
-  void _launchUrl(String url) async {
-    if (!await launch(
-      url,
-      forceSafariVC: false,
-      forceWebView: true,
-      enableJavaScript: true,
-    )) throw 'Could not launch URL';
+  void _openEmail(String _url) async {
+    if (!await launch(_url)) throw 'Could not Send Email';
   }
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        if (widget.text == 'Hire me!') {
-          _launchUrl('mailto:napemmoke@gmail.com?');
-        }
+        _openEmail('mailto:napemmoke@gmail.com?');
       },
       onHover: (value) {
         setState(() {

@@ -29,7 +29,7 @@ class StartingProjectContainer extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           SvgPicture.asset(
-            '/icons/email.svg',
+            'assets/icons/email.svg',
             // color: Colors.purple,
             height: 60,
           ),

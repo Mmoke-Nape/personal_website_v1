@@ -19,6 +19,8 @@ List<Product> _screens = [
     description: 'With an existing account',
     features: [
       '- Email and password validation',
+      "- Log's the existing user in",
+      "- Adds a new user in the database",
       "- Cool and simple animation to signup screen 🙂",
     ],
   ),
@@ -40,7 +42,7 @@ List<Product> _screens = [
     ],
   ),
   Product(
-    image: '/images/MockUps/cart.png',
+    image: 'assets/images/MockUps/cart.png',
     title: 'Order',
     description: 'The lovely items you selected',
     features: [
@@ -50,7 +52,7 @@ List<Product> _screens = [
     ],
   ),
   Product(
-    image: '/images/MockUps/drawer.png',
+    image: 'assets/images/MockUps/drawer.png',
     title: 'Navigate',
     description: 'And manage this app',
     features: [

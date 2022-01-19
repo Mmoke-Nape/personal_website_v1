@@ -44,7 +44,7 @@ class HomePageOneTextColumn extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 30),
+          SizedBox(height: size.height * .07),
           Text(
             "Based in Johannesburg, South Africa. I'm a web and mobile developer.",
             style: Theme.of(context).textTheme.headline4!.copyWith(
@@ -52,7 +52,7 @@ class HomePageOneTextColumn extends StatelessWidget {
                   fontSize: Responsive.isMobile(context) ? 20 : null,
                 ),
           ),
-          const SizedBox(height: 30),
+          SizedBox(height: size.height * .07),
           Text(
             "An enthusiastic software engineer undergrad ready to imact the world of tech by delivering high quality products while doing everything else I love",
             style: Theme.of(context).textTheme.bodyText2!.copyWith(
@@ -61,7 +61,7 @@ class HomePageOneTextColumn extends StatelessWidget {
                     : Colors.grey,
                 letterSpacing: 3),
           ),
-          const SizedBox(height: 30),
+          SizedBox(height: size.height * .07),
           if (Responsive.isMobile(context))
             Center(
               child: GestureDetector(

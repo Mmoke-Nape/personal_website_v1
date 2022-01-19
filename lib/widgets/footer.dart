@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:personal_website/responsive/responsive.dart';
 
 class Footer extends StatelessWidget {
   const Footer({
     Key? key,
-    required this.size,
   }) : super(key: key);
-
-  final Size size;
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Container(
-      height: 100,
+      height: Responsive.isMobile(context) ? 50 : 100,
       width: size.width,
-      padding: EdgeInsets.symmetric(horizontal: 200, vertical: 10),
+      padding: EdgeInsets.symmetric(
+          horizontal: Responsive.isMobile(context) ? 10 : 200, vertical: 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: const [

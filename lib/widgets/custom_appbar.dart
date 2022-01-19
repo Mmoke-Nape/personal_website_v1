@@ -13,15 +13,17 @@ class CustomAppBar extends StatelessWidget {
     Key? key,
     required this.size,
     required this.isShopApp,
+    required this.press,
   }) : super(key: key);
 
   final Size size;
   final bool isShopApp;
+  final Function() press;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      // color: Colors.green,
+      color: Colors.black,
       padding: EdgeInsets.symmetric(
           horizontal: Responsive.isMobile(context) ? 20 : 30,
           vertical: Responsive.isMobile(context) ? 10 : 20),
@@ -30,16 +32,24 @@ class CustomAppBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          SvgPicture.asset(
-            'assets/icons/personal Logo.svg',
-            height: Responsive.isMobile(context) ? 50 : 60,
-            color: isShopApp ? shopAppColor : Theme.of(context).primaryColor,
+          GestureDetector(
+            onTap: () => Get.toNamed('/', arguments: {'page': 'home'}),
+            child: SvgPicture.asset(
+              'assets/icons/personal Logo.svg',
+              height: Responsive.isMobile(context) ? 50 : 60,
+              color: isShopApp ? shopAppColor : Theme.of(context).primaryColor,
+            ),
           ),
-          SvgPicture.asset(
-            '/icons/menu.svg',
-            height: Responsive.isMobile(context) ? 40 : 60,
-            color: isShopApp ? shopAppColor : Theme.of(context).primaryColor,
-          ),
+          if (Responsive.isMobile(context))
+            GestureDetector(
+              onTap: press,
+              child: SvgPicture.asset(
+                'assets/icons/menu.svg',
+                height: Responsive.isMobile(context) ? 40 : 60,
+                color:
+                    isShopApp ? shopAppColor : Theme.of(context).primaryColor,
+              ),
+            ),
           if (!Responsive.isMobile(context))
             Container(
               // color: Colors.amber,

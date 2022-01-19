@@ -16,7 +16,9 @@ import 'package:personal_website/widgets/contact_full_triangle_clipper.dart';
 import 'package:personal_website/widgets/custom_appbar.dart';
 import 'package:personal_website/widgets/footer.dart';
 import 'package:personal_website/home/components/home_learn_about_page.dart';
+import 'package:personal_website/widgets/home_learn_about_me_page_mobile.dart';
 import 'package:personal_website/widgets/list_of_socials.dart';
+import 'package:personal_website/widgets/mobile_drawer.dart';
 import 'package:personal_website/widgets/project_display.dart';
 import 'package:personal_website/widgets/starting_new_project_container.dart';
 import 'package:personal_website/widgets/triangle_clipper.dart';
@@ -31,17 +33,24 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
     return SafeArea(
       child: Scaffold(
+        key: _scaffoldKey,
+        drawer: MobileDrawer(),
+        backgroundColor: Colors.black,
         body: SingleChildScrollView(
           child: Column(
             children: [
               CustomAppBar(
                 isShopApp: false,
                 size: size,
+                press: () => _scaffoldKey.currentState!.openDrawer(),
               ),
               // const SizedBox(height: 30),
               Container(
+                color: Colors.black,
                 height: Responsive.isMobile(context)
                     ? size.height - 70
                     : size.height - 100,
@@ -52,7 +61,9 @@ class HomeScreen extends StatelessWidget {
                   clipBehavior: Clip.none,
                   children: [
                     Positioned(
-                      top: size.height * .1,
+                      top: Responsive.isMobile(context)
+                          ? size.height * .05
+                          : size.height * .1,
                       right: Responsive.isMobile(context)
                           ? size.width * .15
                           : null,
@@ -110,7 +121,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                     Positioned(
                         top: Responsive.isMobile(context)
-                            ? size.height * .3
+                            ? size.height * .25
                             : 260,
                         right: Responsive.isMobile(context)
                             ? size.width * .1
@@ -119,13 +130,15 @@ class HomeScreen extends StatelessWidget {
                     Positioned(
                       bottom: Responsive.isMobile(context) ? 10 : 100,
                       left: 0,
-                      child: ListOfSocials(size: size),
+                      child: const ListOfSocials(),
                     ),
                   ],
                 ),
               ),
-              HomePortfolioPage(size: size),
-              HomeLearnAboutPage(size: size),
+              const HomePortfolioPage(),
+              Responsive.isMobile(context)
+                  ? const HomeLearnAboutMePageMobile()
+                  : HomeLearnAboutPage(size: size),
             ],
           ),
         ),

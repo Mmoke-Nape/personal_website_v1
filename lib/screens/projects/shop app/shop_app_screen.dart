@@ -10,9 +10,11 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:personal_website/constants.dart';
 import 'package:personal_website/models/product.dart';
+import 'package:personal_website/responsive/responsive.dart';
 import 'package:personal_website/widgets/consult_button.dart';
 import 'package:personal_website/widgets/custom_appbar.dart';
 import 'package:personal_website/widgets/list_of_socials.dart';
+import 'package:personal_website/widgets/mobile_drawer.dart';
 import 'package:personal_website/widgets/on_hover.dart';
 import 'package:personal_website/widgets/starting_new_project_container.dart';
 
@@ -33,8 +35,13 @@ class ShopAppPage extends StatelessWidget {
     );
 
     Size size = MediaQuery.of(context).size;
+    final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
     return SafeArea(
       child: Scaffold(
+        key: _scaffoldKey,
+        drawer: MobileDrawer(),
+        backgroundColor: Colors.black,
         body: Container(
           width: size.width,
           height: size.height,
@@ -42,9 +49,15 @@ class ShopAppPage extends StatelessWidget {
             children: [
               // const SizedBox(height: 30),
               CustomAppBar(
-                size: size,
-                isShopApp: true,
-              ),
+                  size: size,
+                  isShopApp: true,
+                  press: () {
+                    if (_scaffoldKey.currentState!.isDrawerOpen) {
+                      _scaffoldKey.currentState!.openEndDrawer();
+                    } else {
+                      _scaffoldKey.currentState!.openDrawer();
+                    }
+                  }),
               Stack(
                 clipBehavior: Clip.hardEdge,
                 children: [
@@ -55,17 +68,22 @@ class ShopAppPage extends StatelessWidget {
                           return const LinearGradient(
                             begin: Alignment.centerRight,
                             end: Alignment.centerLeft,
-                            colors: [Colors.transparent, Colors.black87],
+                            colors: [Colors.transparent, Colors.black],
                             stops: [.15, 1],
                           ).createShader(
                               Rect.fromLTRB(0, 0, rect.width, rect.height));
                         },
                         blendMode: BlendMode.dstIn,
                         child: Image.asset(
-                          '/images/MockUps/Mockup.png',
-                          width: size.width * .4,
+                          'assets/images/MockUps/Mockup.png',
+                          alignment: Alignment.topCenter,
+                          width: Responsive.isMobile(context)
+                              ? size.width * .7
+                              : size.width * .4,
                           height: size.height - 100,
-                          fit: BoxFit.fitHeight,
+                          fit: Responsive.isMobile(context)
+                              ? BoxFit.fitWidth
+                              : BoxFit.fitHeight,
                         ),
                       ),
                     ],
@@ -109,7 +127,7 @@ class ShopAppPage extends StatelessWidget {
                           Positioned(
                             right: 0,
                             child: Container(
-                              // color: Colors.red,
+                              color: Colors.black26,
                               width: size.width * .75,
                               height: size.height - 100,
                               child: SingleChildScrollView(
@@ -206,7 +224,7 @@ class ShopAppPage extends StatelessWidget {
                                                 CrossAxisAlignment.center,
                                             children: [
                                               SvgPicture.asset(
-                                                '/icons/flutter-color.svg',
+                                                'assets/icons/flutter-color.svg',
                                                 height: 30,
                                               ),
                                               const Text('Flutter',
@@ -216,7 +234,7 @@ class ShopAppPage extends StatelessWidget {
                                           Column(
                                             children: [
                                               SvgPicture.asset(
-                                                '/icons/firebase.svg',
+                                                'assets/icons/firebase.svg',
                                                 color: shopAppColor,
                                                 height: 30,
                                               ),
@@ -227,7 +245,7 @@ class ShopAppPage extends StatelessWidget {
                                           Column(
                                             children: [
                                               SvgPicture.asset(
-                                                '/icons/dart.svg',
+                                                'assets/icons/dart.svg',
                                                 height: 30,
                                               ),
                                               const Text('Dart', style: style),
@@ -261,7 +279,7 @@ class ShopAppPage extends StatelessWidget {
                                     ),
                                     const SizedBox(width: 10),
                                     const Text(
-                                      '- Auto Logout function after period of inactivity',
+                                      '- Auto Logout function after period of  inactivity',
                                       style: style,
                                     ),
                                     const SizedBox(width: 40),
@@ -282,7 +300,14 @@ class ShopAppPage extends StatelessWidget {
                   //   size: size,
                   //   isShopApp: true,
                   //   ),
-                  // ),
+                  if (Responsive.isMobile(context))
+                    Positioned(
+                      top: 20, //size.height * .2,
+                      left: 20, //size.width * .1,
+                      child: BackButton(
+                        color: Colors.white,
+                      ),
+                    ),
                 ],
               ),
             ],
@@ -328,7 +353,9 @@ class ShopAppProductDisplay extends StatelessWidget {
           Container(
             clipBehavior: Clip.hardEdge,
             height: size.height * .6,
-            width: size.width * .2,
+            width: Responsive.isMobile(context)
+                ? size.width * .9
+                : size.width * .2,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
             ),
@@ -339,7 +366,9 @@ class ShopAppProductDisplay extends StatelessWidget {
           ),
           const SizedBox(height: 30),
           SizedBox(
-            width: size.width * .2,
+            width: Responsive.isMobile(context)
+                ? size.width * .8
+                : size.width * .2,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

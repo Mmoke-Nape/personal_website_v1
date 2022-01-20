@@ -1,11 +1,11 @@
 {
-    "name": "personal_website",
-    "short_name": "personal_website",
+    "name": "Mmoke Nape",
+    "short_name": "Mmoke Nape",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "My name is Mmoke Nape and i am a software developer and freelancer. This is my perosnal portfolio, showing my work and skills. Don't forget to shoot me an email!",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
